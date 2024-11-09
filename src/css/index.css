@@ -62,23 +62,18 @@ li {
   /* width: 330px; */
 }
 .radioButtons {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  /* align-items: center;
-  text-align: center; */
-  /* gap: 10px; */
+  top: 0;
 }
 
 .radioButtons-li {
   display: flex;
-  /* Ensures space between the title and button */
-  /* align-items: center; */
-  /* padding: 10px; */
 }
 
 .radioButtons-li span {
-  /* margin-right: 10px; Space between title and button */
   margin: 8px;
 }
 
@@ -88,7 +83,7 @@ li {
   opacity: 1;
   height: 40px;
   width: 250px;
-  border-style: solid;
+  border-style: none;
   border-width: 2px;
   border-radius: 20px;
 }
@@ -104,8 +99,14 @@ li {
 }
 
 .button-list {
+  position: absolute;
+  text-align: center;
+  /* justify-content: center;
+  align-items: center; */
+  top: 376px;
   display: flex;
-  justify-content: space-around;
+
+  /* justify-content: space-around; */
   gap: 15px;
 }
 .ButtonNext {
@@ -127,15 +128,10 @@ li {
   background-color: lightgray;
 }
 
-.button-open {
-  background-color: transparent;
-  border: none;
-  font-weight: bold;
-  font-size: xx-large;
-  /* margin-top: 0; */
-}
-
-.paint-button {
+.theme-button {
+  /* position: absolute;
+  top: 400px; */
+  /* margin-left: 10px; */
   background-color: transparent;
   border: none;
   font-weight: bold;
@@ -149,10 +145,8 @@ li {
   width: 50px;
   height: 30px;
   text-align: center;
-  /* font-style: italic; */
   font-size: 14px;
   font-weight: bold;
-  /* padding-left: 4px; */
 }
 
 .ButtonsChannel:hover {
@@ -255,11 +249,13 @@ li {
 }
 
 .ButtonFold {
+  /* position: absolute; */
   background-color: transparent;
   border: none;
   font-weight: bold;
   font-size: xx-large;
-  margin-top: 2px;
+  /* margin-top: 0px; */
+  /* top: 400px; */
 }
 
 #foldOut {

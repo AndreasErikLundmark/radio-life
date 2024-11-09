@@ -1,11 +1,11 @@
-import { useTheme } from "./use-theme.tsx";
+import { useTheme } from "./use-theme";
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <button className="paint-button" onClick={toggleTheme}>
-      ✎
+    <button className="theme-button" onClick={toggleTheme}>
+      ❐
     </button>
   );
 }

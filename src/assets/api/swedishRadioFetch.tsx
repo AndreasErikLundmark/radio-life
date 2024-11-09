@@ -1,23 +1,24 @@
-export async function radioStreamFetcher(id: number): Promise<Document | null> {
-  try {
-    const response = await fetch(`https://api.sr.se/api/v2/channels/${id}`);
+// import {
+//   Query,
+//   QueryClient,
+//   QueryClientProvider,
+//   useQuery,
+//   useQueryClient,
+// } from "@tanstack/react-query";
+// import { getSwedishRadioStream } from "./api";
+// import { useState } from "react";
 
-    if (!response.ok) {
-      throw new Error("näe det där gick inge vidare");
-    }
+// export async function radioStreamFetcher(
+//   channelId: number
+// ): Promise<string | null> {
+//   const { isPending, error, data } = useQuery({
+//     queryKey: ["swedishRadioStream", channelId],
+//     queryFn: async () => getSwedishRadioStream(channelId),
+//   });
+//   if (isPending) return "Loading...";
+//   if (error) return "An error has occurred: " + error.message;
 
-    const xmlString = await response.text();
-    const parser = new DOMParser();
-    const xmlResult = parser.parseFromString(xmlString, "application/xml");
-
-    const audio = xmlResult.getElementsByTagName("liveaudio")[0];
-    const url = audio.getElementsByTagName("url")[0].textContent;
-    console.log(xmlResult.getElementsByTagName("liveaudio")[0]);
-    return url;
-    // return xmlResult;
-    console.log(xmlResult);
-  } catch (error) {
-    console.error("näe det där gick inte bra", error);
-    return null;
-  }
-}
+//   const result = data;
+//   console.log("the fetched data :", result);
+//   return result;
+// }

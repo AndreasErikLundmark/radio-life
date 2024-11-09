@@ -2,54 +2,81 @@ import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import RadioBox from "../assets/components/RadioBox";
 import Forest1 from "../assets/images/forest.png";
+import Forest2 from "../assets/images/forest2.png";
 import { ButtonFold } from "../assets/buttons/ButtonFold";
 import { ThemeToggle } from "../assets/theme/theme-toggle";
-import { ButtonOpenWindow } from "../assets/buttons/ButtonOpenWindow";
 import { useTheme } from "../assets/theme/use-theme";
-import { useState } from "react";
-import { ButtonP4 } from "../assets/buttons/ButtonP4";
-import { ButtonP3 } from "../assets/buttons/ButtonP3";
-import { ButtonP2 } from "../assets/buttons/ButtonP2";
-import { ButtonPlay } from "../assets/buttons/ButtonPlay";
-import FoldOutPlayer from "../assets/components/FoldOutPlayer";
+import { useState, useEffect, useRef } from "react";
+import ButtonSwedishRadio from "../assets/buttons/buttonSwedishRadio";
 
 export const Route = createFileRoute("/")({
   component: HomeComponent,
 });
 
-const streamsUpdatedsOriginal = [
-  {
-    title: "streamsUpdated 1",
-    clicked: false,
-    color: "red",
-    id: 1,
-    button: <ButtonPlay />,
-  },
-  {
-    title: "streamsUpdated 2",
-    clicked: false,
-    color: "red",
-    id: 2,
-    button: <ButtonP2 />,
-  },
-  {
-    title: "streamsUpdated 3",
-    clicked: false,
-    color: "red",
-    id: 3,
-    button: <ButtonP3 />,
-  },
-  {
-    title: "streamsUpdated 4",
-    clicked: false,
-    color: "red",
-    id: 4,
-    button: <ButtonP4 />,
-  },
-];
-
 function HomeComponent() {
   const [isPlaying, setPlay] = useState(false);
+  const [currentRadio, setRadio] = useState("");
+  const [radioName, setCurrentName] = useState("");
+
+  const streamsUpdatedsOriginal = [
+    {
+      title: "streamsUpdated 1",
+      clicked: false,
+      color: "red",
+      id: 1,
+      // button: <ButtonPlay />,
+      button: (
+        <ButtonSwedishRadio
+          channelId={132}
+          channelName="1"
+          setRadio={setRadio}
+          setName={setCurrentName}
+        />
+      ),
+    },
+    {
+      title: "streamsUpdated 2",
+      clicked: false,
+      color: "red",
+      id: 2,
+      button: (
+        <ButtonSwedishRadio
+          channelId={163}
+          channelName="2"
+          setRadio={setRadio}
+          setName={setCurrentName}
+        />
+      ),
+    },
+    {
+      title: "streamsUpdated 3",
+      clicked: false,
+      color: "red",
+      id: 3,
+      button: (
+        <ButtonSwedishRadio
+          channelId={164}
+          channelName="3"
+          setRadio={setRadio}
+          setName={setCurrentName}
+        />
+      ),
+    },
+    {
+      title: "streamsUpdated 4",
+      clicked: false,
+      color: "red",
+      id: 4,
+      button: (
+        <ButtonSwedishRadio
+          channelId={212}
+          channelName="4"
+          setRadio={setRadio}
+          setName={setCurrentName}
+        />
+      ),
+    },
+  ];
 
   const detectPlay = () => {
     setPlay(true);
@@ -64,25 +91,29 @@ function HomeComponent() {
       <span>{stream.button}</span>
     </li>
   ));
+  const { theme } = useTheme();
+
+  console.log("Applying theme:", theme);
+  const audioElement = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    if (audioElement.current && currentRadio) {
+      audioElement.current.src = currentRadio;
+      audioElement.current.play();
+    }
+  }, [currentRadio]);
 
   return (
     <div
-      className="p-6 bg-pink bg-no-repeat bg-center bg-cover text-center grid place-items-center h-screen"
-      style={{ backgroundImage: `url(${Forest1})` }}
+      className="p-6 bg-no-repeat bg-center bg-cover text-center grid place-items-center h-screen"
+      style={{ backgroundImage: `url(${theme})` }}
     >
-      <RadioBox />
+      <RadioBox radioName={radioName} />
 
-      <div className="button-list ">
-        <ButtonFold />
-        <ThemeToggle />
-        <ButtonOpenWindow />
+      <div className="" id="foldOut">
+        <ul className="radioButtons">{listItems}</ul>
+        <audio ref={audioElement} className="audioPlayer" controls />
       </div>
-
-      <FoldOutPlayer
-        detectPlay={detectPlay}
-        detectPause={detectPause}
-        listItems={listItems}
-      />
     </div>
   );
 }
