@@ -11,7 +11,7 @@ function RootComponent() {
   return (
     <>
       <div className="bg-lime-500 min-h-screen">
-        <div className="p-2 flex gap-2 text-lg bg-blue-500">
+        {/* <div className="p-2 flex gap-2 text-lg bg-blue-500">
           <Link
             to="/"
             activeProps={{
@@ -29,11 +29,11 @@ function RootComponent() {
           >
             About
           </Link>
-        </div>
+        </div> */}
 
         <hr />
         <Outlet />
-        <TanStackRouterDevtools position="bottom-right" />
+        {/* <TanStackRouterDevtools position="bottom-right" /> */}
       </div>
     </>
   );

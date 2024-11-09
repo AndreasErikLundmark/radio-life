@@ -1,0 +1,287 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* color-scheme: light dark; */
+  color: #000000de;
+  /* background-color: hsl(0, 100%, 94%); */
+  height: 100%;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+} */
+
+body {
+  margin: 0;
+  /* display: flex;
+  place-items: center; */
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.centerBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.header-main {
+  color: white;
+  font-size: 50px;
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-text-stroke-color: black;
+}
+
+.radioBox {
+  /* display: flexbox; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* height: 100%; */
+  /* width: 330px; */
+}
+.radioButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* align-items: center;
+  text-align: center; */
+  /* gap: 10px; */
+}
+
+.radioButtons-li {
+  display: flex;
+  /* Ensures space between the title and button */
+  /* align-items: center; */
+  /* padding: 10px; */
+}
+
+.radioButtons-li span {
+  /* margin-right: 10px; Space between title and button */
+  margin: 8px;
+}
+
+.audioPlayer {
+  /* display: none; */
+  color: black;
+  opacity: 1;
+  height: 40px;
+  width: 250px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 20px;
+}
+#nowPlaying {
+  display: flex;
+  position: absolute;
+  margin-top: 36px;
+  margin-left: 170px;
+  z-index: 3;
+  background-color: transparent;
+  border-radius: 5px;
+  font-style: italic;
+}
+
+.button-list {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+}
+.ButtonNext {
+  display: flex;
+  position: absolute;
+  margin-top: 250px;
+  z-index: 3;
+  background-color: yellow;
+  border-radius: 5px;
+  width: 45px;
+  text-align: center;
+  /* font-style: italic; */
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 4px;
+}
+
+.ButtonNext:hover {
+  background-color: lightgray;
+}
+
+.button-open {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: xx-large;
+  /* margin-top: 0; */
+}
+
+.paint-button {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.ButtonsChannel {
+  background-color: #6aff00;
+  border-radius: 5px;
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  /* font-style: italic; */
+  font-size: 14px;
+  font-weight: bold;
+  /* padding-left: 4px; */
+}
+
+.ButtonsChannel:hover {
+  background-color: lightgray;
+}
+
+/* #radio {
+  display: none;
+} */
+.audioMeter {
+  position: absolute;
+  opacity: 0.6;
+  height: 100px;
+  width: 20px;
+  margin-top: 60px;
+  margin-left: 12px;
+  /* z-index: 100; */
+}
+
+.levels {
+  height: 100%;
+  width: 100%;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: row;
+  padding: 4px 3px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+/* paint not glowing LEDs */
+.level {
+  position: relative;
+  margin: 0 2px;
+  flex-grow: 1;
+  z-index: 3;
+  background-color: transparent;
+  background-repeat: repeat-y;
+  background-image: linear-gradient(to bottom, #66666650 3px, transparent 1px);
+  background-size: 100% 4px;
+}
+
+.levels.paused .level:before {
+  animation: none; /* Stop animation when paused */
+  display: none;
+}
+
+/* paint glowing LEDs */
+.level:before {
+  width: 100%;
+  height: 100%;
+  content: " ";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(to top, green 0%, yellow 80%, red 100%);
+  background-size: 100% 100%;
+  filter: drop-shadow(0px 0px 7px #ffffff99);
+  /* -webkit-clip-path: inset(0% 0 0 0); Safari */
+  animation: level-animation 2500ms alternate infinite;
+}
+
+@keyframes level-animation {
+  0% {
+    clip-path: inset(0% 0 0 0);
+    -webkit-clip-path: inset(0% -4px 0 -4px);
+  }
+  50% {
+    clip-path: inset(40% 0 0 0);
+    filter: drop-shadow(0px 0px 7px #ffffff70);
+    -webkit-clip-path: inset(40% -4px 0 -4px);
+  }
+  100% {
+    clip-path: inset(20% 0 0 0);
+
+    -webkit-clip-path: inset(20% -4px 0 -4px);
+  }
+}
+
+/* paint gap lines of LEDs */
+.level::after {
+  width: 100%;
+  height: 100%;
+  content: " ";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+  margin-top: 3px;
+  background-image: linear-gradient(
+    to bottom,
+    black 1px /* space between leds*/,
+    transparent 1px
+  );
+  background-repeat: repeat-y;
+  background-size: 100% 4px; /* 4px LED height */
+  background-color: transparent;
+}
+
+.ButtonFold {
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: xx-large;
+  margin-top: 2px;
+}
+
+#foldOut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn ease-in 1;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+}

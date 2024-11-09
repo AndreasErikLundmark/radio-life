@@ -7,8 +7,6 @@ export default function RadioBox() {
       className="flex flex-col bg-cover bg-center w-[330px] h-[450px] border border-black
       relative z-10"
       style={{ backgroundImage: `url(${radioImage})` }}
-    >
-      <h1>RadioBox</h1>
-    </div>
+    ></div>
   );
 }
