@@ -11,25 +11,26 @@ function RootComponent() {
   return (
     <>
       <div>
-        {/* <div className="p-2 flex gap-2 text-lg bg-blue-500">
+        <div className="p-2 flex gap-2 text-lg border-none">
           <Link
             to="/"
             activeProps={{
-              className: "font-bold",
+              className: "font-bold text-white font-mono",
             }}
             activeOptions={{ exact: true }}
           >
             Home
           </Link>{" "}
           <Link
-            to="/about"
+            to="/settings"
             activeProps={{
-              className: "font-bold",
+              className: "font-bold font-bold text-white font-mono",
             }}
+            inactiveProps={{ className: "text-gray" }}
           >
-            About
+            Settings
           </Link>
-        </div> */}
+        </div>
 
         <hr />
         <Outlet />
