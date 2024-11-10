@@ -16,11 +16,8 @@ export default function AddForm() {
       } else {
         alert("No file to add!");
       }
-      const response = await fetch("http://localhost:3001/ap", {
+      const response = await fetch("http://localhost:3000/radiolife", {
         method: "POST",
-        headers: {
-          "Content-Type": "multipart/formdata",
-        },
         body: formData,
       });
 
