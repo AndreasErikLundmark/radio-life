@@ -1,7 +1,9 @@
 package dev.radio_life.controller;
 
+import dev.radio_life.model.AudioFile;
 import dev.radio_life.service.RadioService;
 import dev.radio_life.storage.FileSystemStorageService;
+import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,8 +30,12 @@ public class AudioController {
     }
 
     @GetMapping
-    public ResponseEntity<List> findAll() {
+    public ResponseEntity<List<AudioFile>> findAll() {
         return ResponseEntity.ok(radioService.findAll());
+    }
+@GetMapping("/files/{filename}")
+    public ResponseEntity<Resource> findByName(@PathVariable String filename) {
+        return ResponseEntity.ok( radioService.getFileByName(filename));
     }
 
     @PostMapping
