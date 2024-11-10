@@ -281,3 +281,10 @@ li {
   animation-fill-mode: forwards;
   animation-duration: 1s;
 }
+/* ----------------------------------------------- */
+
+/* Audioplayerpage */
+/* ----------------------------------------------- */
+.--selected {
+  background-color: lightgreen;
+}

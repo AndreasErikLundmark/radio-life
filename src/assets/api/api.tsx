@@ -23,7 +23,7 @@ export const getSwedishRadioStream = async (channelId: number) => {
   const response = await fetch(`${STREAM_URL}${channelId}`);
 
   if (!response.ok) {
-    throw new Error("näe det där gick inge vidare");
+    alert("Could not fetch radio stream");
   }
   return await xmlToURL(response);
 };
