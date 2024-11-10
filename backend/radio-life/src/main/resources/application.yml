@@ -1,0 +1,39 @@
+debug: true
+server:
+  port: 3000
+spring:
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    url: jdbc:postgresql://localhost:5432/radiolife
+    username: alu
+    password: 12345
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    defer-datasource-initialization: true
+  sql:
+    init:
+      platform: postgresql
+      mode: never
+    output:
+      ansi:
+        enabled: always
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure: ERROR
+
+
+
+#Datasource: PostgreSQL
+#Host: localhost
+#  Port:5432
+#Username: salt
+#Password: secret
+#Database: saltdb
