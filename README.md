@@ -1,6 +1,5 @@
 #RadioPlayer overview
-
-![radioplayerplan](https://github.com/user-attachments/assets/7f8ea2f2-4004-4c97-91eb-17b432f3af3e)
+![radiolifemap](https://github.com/user-attachments/assets/638d0a7f-dc68-418e-8b2e-26d7e159cf59)
 
 The app consists of two parts, a radio player and a audiofile player/storage.
 
