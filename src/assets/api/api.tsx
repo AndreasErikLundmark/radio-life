@@ -1,3 +1,5 @@
+import { showError } from "../error/notification";
+
 const xmlToURL = async (
   response: Response
 ): Promise<{ url: string | null; name: string | null }> => {
@@ -13,15 +15,15 @@ const xmlToURL = async (
 
   return { url, name };
 };
-//   const STREAM_URL = import.meta.env.VITE_API_URL; note to self
-const STREAM_URL = "https://api.sr.se/api/v2/channels/";
+
+const STREAM_URL = import.meta.env.VITE_SR_API_URL;
 
 export const getSwedishRadioStream = async (channelId: number) => {
   await new Promise((resolve) => setTimeout(resolve, 2000));
   const response = await fetch(`${STREAM_URL}${channelId}`);
 
   if (!response.ok) {
-    alert("Could not fetch radio stream");
+    showError("Could not fetch radio stream");
   }
   return await xmlToURL(response);
 };

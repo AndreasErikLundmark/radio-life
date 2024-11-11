@@ -99,7 +99,7 @@ function HomeComponent() {
 
   return (
     <div
-      className="p-6 bg-no-repeat bg-center bg-cover text-center grid place-items-center h-screen"
+      className="bg-no-repeat bg-center bg-cover text-center grid place-items-center "
       style={{ backgroundImage: `url(${theme})` }}
     >
       <RadioBox radioName={radioName} />
@@ -108,6 +108,7 @@ function HomeComponent() {
         <ul className="radioButtons">{listItems}</ul>
         <audio ref={audioElement} className="audioPlayer" controls />
       </div>
+      <footer className="footer-center h-32 bg-white"></footer>
     </div>
   );
 }

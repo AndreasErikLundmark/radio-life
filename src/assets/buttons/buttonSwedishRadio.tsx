@@ -1,6 +1,7 @@
 // import { radioStreamFetcher } from "../api/swedishRadioFetch";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
 import { getSwedishRadioStream } from "../api/api";
+import { showError } from "../error/notification";
 
 interface Props {
   channelId: number;
@@ -29,7 +30,7 @@ export default function ButtonSwedishRadio({
     },
     onError: (error) => {
       console.error("Error fetching radio stream:", error);
-      alert("Could not load radio stream");
+      showError("Could not load radio stream");
     },
   });
 
