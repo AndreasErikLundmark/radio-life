@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState, useRef } from "react";
-import { showInfo } from "../../error/notification";
+import { showError, showInfo } from "../../error/notification";
 
 export default function AddForm() {
   const [file, setFile] = useState<File | null>(null);
@@ -14,7 +14,7 @@ export default function AddForm() {
       if (file) {
         formData.append("file", file);
       } else {
-        alert("No file to add!");
+        showError("No file to add!");
       }
       const response = await fetch("http://localhost:3000/radiolife", {
         method: "POST",
@@ -39,7 +39,7 @@ export default function AddForm() {
       }
     },
     onError: (error) => {
-      alert(error.message);
+      showError(error.message);
     },
   });
 
@@ -49,7 +49,6 @@ export default function AddForm() {
       mutation.mutate();
     } else {
       showInfo("Please choose a file to add!");
-      // alert("No file to add!");
       if (fileInputField.current) {
         fileInputField.current.value = "";
       }

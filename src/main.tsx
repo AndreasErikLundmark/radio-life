@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { routeTree } from "./routeTree.gen";
 import { Providers } from "./providers";
 import "./css/index.css";
@@ -27,7 +27,7 @@ if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <QueryClientProvider client={queryClient}>
-      <ToastContainer />
+      <ToastContainer toastClassName="toast-font-mono" />
       <Providers>
         <RouterProvider router={router} />
       </Providers>

@@ -271,3 +271,7 @@ li {
 .--selected:hover {
   cursor: pointer;
 }
+
+.toast-font-mono {
+  font-family: monospace;
+}
