@@ -259,11 +259,15 @@ li {
 /* Audioplayerpage */
 /* ----------------------------------------------- */
 .--selected {
-  background-color: hsl(120, 100%, 88%);
+  background-color: hwb(0 87% 13%);
   display: flex;
   flex-direction: row;
-  padding: 4px;
+  /* padding: 4px; */
   opacity: 50;
 
-  gap: 100px;
+  /* gap: 100px; */
+}
+
+.--selected:hover {
+  cursor: pointer;
 }

@@ -23,7 +23,7 @@ export const AudioList = () => {
   if (error) return <p className="error">error.message</p>;
 
   return (
-    <div className="mt-10 border border-gray-800 h-screen ">
+    <div className="mt-10 border border-gray-800 h-80 font-mono tracking-wider rounded-sm p-4">
       {data.length === 0 ? (
         <p>No audio files in library...</p>
       ) : (

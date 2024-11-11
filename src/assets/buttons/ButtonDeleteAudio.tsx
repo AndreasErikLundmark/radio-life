@@ -35,7 +35,7 @@ export const ButtonDeleteAudio = ({ fileName }: Props) => {
   return (
     <button
       className="btn-ghost font-mono font-bold text-white text-center text-sm py-1 px-1 
-       bg-green-800 bg-opacity-60 hover:text-green-900 rounded-none"
+       bg-green-800 bg-opacity-60 hover:text-green-900 rounded-none right-5 absolute"
       onClick={actionDelete}
     >
       Delete

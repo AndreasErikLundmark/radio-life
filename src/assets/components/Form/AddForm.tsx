@@ -59,34 +59,38 @@ export default function AddForm() {
 
   return (
     <>
-      <div className="formHead">
-        <h4>Add new audio file</h4>
+      <div className="formHead font-mono">
+        {/* <h4>Add new audio file</h4> */}
       </div>
       <form
-        className="addAudioForm space-y-4"
+        className="addAudioForm space-y-4 font-mono"
         id="addAudioForm"
         onSubmit={handleSubmit}
       >
-        <label className="space-x-10">
-          File:
+        <div className="flex items-center space-x-10">
+          <label className="space-x-10 ">
+            File:
+            <input
+              className="input bg-gray-50 h-8 bg-transparent text-m  "
+              ref={fileInputField}
+              type="file"
+              accept="audio/*"
+              onChange={(e) => {
+                if (e.target.files && e.target.files[0]) {
+                  setFile(e.target.files[0]);
+                }
+              }}
+            />
+          </label>
           <input
-            className="input input-border bg-gray-50 h-8  "
-            ref={fileInputField}
-            type="file"
-            accept="audio/*"
-            onChange={(e) => {
-              if (e.target.files && e.target.files[0]) {
-                setFile(e.target.files[0]);
-              }
-            }}
+            className="btn-ghost text-white text-center text-sm py-1 
+          px-2 w-30 bg-zinc-700 bg-opacity-70  hover:text-green-900 rounded-sm
+          tracking-wide
+          "
+            type="submit"
+            value="Add"
           />
-        </label>
-        <input
-          className="btn-ghost font-mono font-bold text-white text-center text-sm py-1 
-          px-2 w-30 bg-green-800 bg-opacity-60  hover:text-green-900 rounded-none"
-          type="submit"
-          value="Add audio file"
-        />
+        </div>
       </form>
     </>
   );
