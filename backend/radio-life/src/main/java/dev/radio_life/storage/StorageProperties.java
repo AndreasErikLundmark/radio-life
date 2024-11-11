@@ -6,9 +6,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @ConfigurationProperties("storage")
 public class StorageProperties {
-    /**
-     * Folder location for storing files
-     */
+
     private String location = "audiofiles";
 
     public String getLocation() {

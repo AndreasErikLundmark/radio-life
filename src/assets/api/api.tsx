@@ -1,5 +1,3 @@
-//   const STREAM_URL = import.meta.env.VITE_API_URL;
-
 const xmlToURL = async (
   response: Response
 ): Promise<{ url: string | null; name: string | null }> => {
@@ -15,7 +13,7 @@ const xmlToURL = async (
 
   return { url, name };
 };
-
+//   const STREAM_URL = import.meta.env.VITE_API_URL; note to self
 const STREAM_URL = "https://api.sr.se/api/v2/channels/";
 
 export const getSwedishRadioStream = async (channelId: number) => {

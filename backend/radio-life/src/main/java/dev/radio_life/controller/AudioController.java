@@ -4,6 +4,7 @@ import dev.radio_life.model.AudioFile;
 import dev.radio_life.service.RadioService;
 import dev.radio_life.storage.FileSystemStorageService;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,25 +34,35 @@ public class AudioController {
     public ResponseEntity<List<AudioFile>> findAll() {
         return ResponseEntity.ok(radioService.findAll());
     }
-@GetMapping("/files/{filename}")
+
+    @GetMapping("/files/{filename}")
     public ResponseEntity<Resource> findByName(@PathVariable String filename) {
-        return ResponseEntity.ok( radioService.getFileByName(filename));
+        return ResponseEntity.ok(radioService.getFileByName(filename));
     }
 
     @PostMapping
     public ResponseEntity<Map<String, String>> addFile(@RequestParam("file") MultipartFile file,
                                                        RedirectAttributes redirectAttributes) {
         fileService.store(file);
+
         Path path = fileService.load(file.getOriginalFilename());
-        System.out.println("current path in controller" + path);
+
         radioService.store(file, path);
+
         redirectAttributes.addFlashAttribute("message",
                 "You successfully uploaded " + file.getOriginalFilename() + "!");
 
         Map<String, String> response = new HashMap<>();
-        response.put("message", "You successfully uploaded " + file.getOriginalFilename() + "!");
+        response.put("message", "Upload success " + file.getOriginalFilename() + "!");
 
         return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{filename}")
+    public ResponseEntity<String> deleteFile(@PathVariable String filename) {
+        radioService.deleteFile(filename);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(
+                "Audio file deleted");
     }
 
 

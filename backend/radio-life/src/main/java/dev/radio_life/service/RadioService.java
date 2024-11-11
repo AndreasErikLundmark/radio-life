@@ -5,6 +5,7 @@ import dev.radio_life.repository.AudioRepo;
 import dev.radio_life.storage.FileSystemStorageService;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.Path;
@@ -22,6 +23,7 @@ public class RadioService {
         this.audioRepo = audioRepo;
     }
 
+    @Transactional
     public void store(MultipartFile file, Path path) {
         String fileName = file.getOriginalFilename();
         long fileSize = file.getSize();
@@ -32,7 +34,15 @@ public class RadioService {
     public List<AudioFile> findAll() {
         return audioRepo.findAll();
     }
+
     public Resource getFileByName(String name) {
         return fileStorageService.loadAsResource(name);
+    }
+
+    @Transactional
+    public void deleteFile(String filename) {
+        System.out.println("Deleting file: " + filename);
+        audioRepo.deleteByAudioName(filename);
+        fileStorageService.delete(filename);
     }
 }

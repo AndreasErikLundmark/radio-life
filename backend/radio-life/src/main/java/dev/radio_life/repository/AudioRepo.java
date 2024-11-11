@@ -6,4 +6,5 @@ import org.springframework.data.repository.ListCrudRepository;
 public interface AudioRepo extends ListCrudRepository<AudioFile, Long> {
 
 
+    void deleteByAudioName(String filename);
 }

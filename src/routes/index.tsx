@@ -1,10 +1,5 @@
-import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import RadioBox from "../assets/components/RadioBox";
-import Forest1 from "../assets/images/forest.png";
-import Forest2 from "../assets/images/forest2.png";
-import { ButtonFold } from "../assets/buttons/ButtonFold";
-import { ThemeToggle } from "../assets/theme/theme-toggle";
 import { useTheme } from "../assets/theme/use-theme";
 import { useState, useEffect, useRef } from "react";
 import ButtonSwedishRadio from "../assets/buttons/buttonSwedishRadio";
@@ -24,7 +19,6 @@ function HomeComponent() {
       clicked: false,
       color: "red",
       id: 1,
-      // button: <ButtonPlay />,
       button: (
         <ButtonSwedishRadio
           channelId={132}

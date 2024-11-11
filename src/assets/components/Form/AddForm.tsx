@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { showInfo } from "../../error/notification";
 
 export default function AddForm() {
   const [file, setFile] = useState<File | null>(null);
-
-  // const [errorMsg, setErrorMsg] = useState("");
+  const fileInputField = useRef<HTMLInputElement | null>(null);
 
   const queryClient = useQueryClient();
 
@@ -30,10 +30,13 @@ export default function AddForm() {
     },
 
     onSuccess: () => {
-      // queryClient.invalidateQueries(["repoData"]);
-      console.log("Seems like we are doing a POST" + name + "added");
-      alert("Added to you music list!");
       setFile(null);
+
+      queryClient.invalidateQueries();
+      showInfo("Audio file added to library");
+      if (fileInputField.current) {
+        fileInputField.current.value = "";
+      }
     },
     onError: (error) => {
       alert(error.message);
@@ -45,7 +48,12 @@ export default function AddForm() {
     if (file) {
       mutation.mutate();
     } else {
-      alert("No file to add!");
+      showInfo("Please choose a file to add!");
+      // alert("No file to add!");
+      if (fileInputField.current) {
+        fileInputField.current.value = "";
+      }
+      setFile(null);
     }
   };
 
@@ -53,14 +61,17 @@ export default function AddForm() {
     <>
       <div className="formHead">
         <h4>Add new audio file</h4>
-        {/* <h4 className="form__error-message">{errorMsg}</h4> */}
       </div>
-      <form className="addAudioForm" id="addAudioForm" onSubmit={handleSubmit}>
-        {/* <h4>Add new developer</h4> */}
-        <label>
+      <form
+        className="addAudioForm space-y-4"
+        id="addAudioForm"
+        onSubmit={handleSubmit}
+      >
+        <label className="space-x-10">
           File:
           <input
-            className="form__input-name"
+            className="input input-border bg-gray-50 h-8  "
+            ref={fileInputField}
             type="file"
             accept="audio/*"
             onChange={(e) => {
@@ -71,7 +82,8 @@ export default function AddForm() {
           />
         </label>
         <input
-          className="form__button-addAudio"
+          className="btn-ghost font-mono font-bold text-white text-center text-sm py-1 
+          px-2 w-30 bg-green-800 bg-opacity-60  hover:text-green-900 rounded-none"
           type="submit"
           value="Add audio file"
         />

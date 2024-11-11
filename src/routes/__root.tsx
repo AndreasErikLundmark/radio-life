@@ -1,6 +1,4 @@
-import * as React from "react";
 import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import "../../css/index.css";
 
 export const Route = createRootRoute({
@@ -11,11 +9,11 @@ function RootComponent() {
   return (
     <>
       <div>
-        <div className="p-2 flex gap-2 text-lg border-none">
+        <div className="p-2 flex gap-3 text-lg border-none bg-white">
           <Link
             to="/"
             activeProps={{
-              className: "font-bold text-white font-mono",
+              className: "font-bold text-gray font-mono",
             }}
             activeOptions={{ exact: true }}
           >
@@ -24,17 +22,16 @@ function RootComponent() {
           <Link
             to="/settings"
             activeProps={{
-              className: "font-bold font-bold text-white font-mono",
+              className: "font-bold font-bold text-gray font-mono",
             }}
-            inactiveProps={{ className: "text-gray" }}
           >
-            Settings
+            Audio Player
           </Link>
         </div>
 
         <hr />
+
         <Outlet />
-        {/* <TanStackRouterDevtools position="bottom-right" /> */}
       </div>
     </>
   );

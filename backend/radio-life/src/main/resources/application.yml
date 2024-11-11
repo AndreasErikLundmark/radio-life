@@ -30,10 +30,3 @@ logging:
           autoconfigure: ERROR
 
 
-
-#Datasource: PostgreSQL
-#Host: localhost
-#  Port:5432
-#Username: salt
-#Password: secret
-#Database: saltdb
