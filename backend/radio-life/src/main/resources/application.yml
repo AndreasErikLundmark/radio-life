@@ -6,9 +6,9 @@ spring:
     ansi:
       enabled: always
   datasource:
-    url: jdbc:postgresql://localhost:5432/radiolife
-    username: alu
-    password: 12345
+    url: ${DATABASE_URL} //.env
+    username: ${DATABASE_USER_NAME} //.env
+    password: ${DATABASE_PASSWORD} //.env
 
   jpa:
     hibernate:
